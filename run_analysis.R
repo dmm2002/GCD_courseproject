@@ -1,14 +1,13 @@
-
 #read both training and test data
-x_train<-read.table("/Users/davidmorrison/R/GCD/projdata/train/X_train.txt",stringsAsFactors=FALSE)
-x_test<-read.table("/Users/davidmorrison/R/GCD/projdata/test/X_test.txt",stringsAsFactors=FALSE)
+x_train<-read.table("train/X_train.txt",stringsAsFactors=FALSE)
+x_test<-read.table("test/X_test.txt",stringsAsFactors=FALSE)
 
 #combine into one dataset and remove originals to reduce memory usuage
 data<-rbind(x_train,x_test)
 rm(x_train,x_test)
 
 #read in features name, assign them as column names
-features<-read.table("/Users/davidmorrison/R/GCD/projdata/features.txt")
+features<-read.table("features.txt")
 colnames(data)<-features$V2
 
 #subset to only include std and mean data, remove no longer needed data
@@ -21,9 +20,9 @@ rm(features,data)
 
 #read in test and train activity set, merge, decode activities, add to dataset
 #read in activity set
-activity_train<-read.table("/Users/davidmorrison/R/GCD/projdata/train/y_train.txt"
+activity_train<-read.table("train/y_train.txt"
                            ,stringsAsFactors=FALSE,col.names=c("Act_num"))
-activity_test<-read.table("/Users/davidmorrison/R/GCD/projdata/test/y_test.txt"
+activity_test<-read.table("test/y_test.txt"
                           ,stringsAsFactors=FALSE,col.names=c("Act_num"))
 
 #merge activity data and add to dataset
@@ -31,15 +30,15 @@ activity_set<-rbind(activity_train,activity_test)
 fdata<-cbind(fdata,activity_set)
 
 #add and merge subject data
-subject_train<-read.table("/Users/davidmorrison/R/GCD/projdata/train/subject_train.txt"
+subject_train<-read.table("train/subject_train.txt"
                            ,stringsAsFactors=FALSE,col.names=c("subject"))
-subject_test<-read.table("/Users/davidmorrison/R/GCD/projdata/test/subject_test.txt"
+subject_test<-read.table("test/subject_test.txt"
                           ,stringsAsFactors=FALSE,col.names=c("subject"))
 subject_set<-rbind(subject_train,subject_test)
 fdata<-cbind(fdata,subject_set)
 
 #decode activity
-act_labels<-read.table("/Users/davidmorrison/R/GCD/projdata/activity_labels.txt"
+act_labels<-read.table("activity_labels.txt"
                        ,stringsAsFactors=FALSE,col.names=c("Act_num","Activity"))
 
 #once numbers are on main dataset, merge to get labels 
