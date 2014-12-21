@@ -108,3 +108,12 @@ The data values represent the average of each variable for each activity and eac
 
 ### Transformation
 The original data set was transformed from originally being a combination of test and training data from this study.
+The script combines the following datafiles to produce the tidy data set (tidy_data.txt):
+*train/X_train.txt
+*test/X_test.txt
+*features.txt
+*train/y_train.txt
+*test/y_test.txt
+*train/subject_train.txt
+*test/subject_test.txt
+*activity_labels.txt
